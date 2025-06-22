@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { Analytics } from '@vercel/analytics/react';
+import { track } from '@vercel/analytics';
 
-// Import all page and layout components from their respective files
 import Navigation from './Navigation';
 import Footer from './Footer';
 import HomePage from './HomePage';
@@ -13,17 +14,18 @@ import InspirationReadingPage from './InspirationReadingPage';
 
 // Main App Component
 const App = () => {
-  // State to manage the current active section/page
   const [currentPage, setCurrentPage] = useState('home');
 
-  // Function to navigate to a new page and scroll to the top
+  useEffect(() => {
+    track('Page View', { page: `/${currentPage}` });
+  }, []);
+
   const navigateTo = (page) => {
     setCurrentPage(page);
     window.scrollTo(0, 0);
+    track('Page View', { page: `/${page}` });
   };
 
-  // Define common styles to be passed as props to child components
-  // This centralizes styling and ensures consistency across pages.
   const commonStyles = {
     sectionClasses: "min-h-screen py-16 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-gray-100 transition-colors duration-500 ease-in-out",
     contentWrapperClasses: "max-w-4xl mx-auto bg-white dark:bg-gray-700 p-8 rounded-xl shadow-lg transition-all duration-500 ease-in-out transform hover:scale-[1.005]",
@@ -37,7 +39,6 @@ const App = () => {
     linkClasses: "text-indigo-600 hover:text-indigo-800 dark:text-indigo-300 dark:hover:text-indigo-500 transition-colors duration-200 ease-in-out",
   };
 
-  // Function to render the correct page component based on the current state
   const renderPage = () => {
     const props = { navigateTo, commonStyles };
     switch (currentPage) {
@@ -61,20 +62,16 @@ const App = () => {
   };
 
   return (
-    // Main container using Tailwind for font and dark mode support
     <div className="font-sans antialiased min-h-screen flex flex-col bg-gray-50 dark:bg-gray-800 transition-colors duration-500 ease-in-out">
-      {/* The link to Google Fonts should be in your public/index.html file */}
-      
-      {/* Navigation component displayed on all pages */}
       <Navigation navigateTo={navigateTo} currentPage={currentPage} />
 
-      {/* Main content area where the current page is rendered */}
       <main className="flex-grow">
         {renderPage()}
       </main>
 
-      {/* Footer component displayed on all pages */}
       <Footer />
+      
+      <Analytics />
     </div>
   );
 };
