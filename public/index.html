@@ -4,10 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Art of Becoming</title>
-    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts for Inter -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <style>
         /* Custom styles for smooth transitions and dark mode */
         :root {
@@ -84,37 +85,14 @@
             transition: background-color 0.5s ease, color 0.5s ease;
         }
 
-        /* Smooth page transitions (opacity/transform for mounting/unmounting) */
-        .page-transition {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.5s ease-out, transform 0.5s ease-out;
-        }
-        .page-transition.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Ensure all rounded corners */
-        * {
-            border-radius: 0.5rem; /* Apply to everything by default, can be overridden by specific Tailwind classes */
-        }
-        /* Specific overrides for elements that might not get rounded by default */
-        .rounded-lg, .rounded-xl, .rounded-full {
-             border-radius: var(--tw-border-radius); /* Ensure Tailwind classes take precedence */
-        }
-
     </style>
 </head>
 <body>
     <div id="root"></div>
-    <!-- Script to load the main React App component -->
-    <script type="module">
-        import App from './App.js'; // Adjust path if needed
-        import ReactDOM from 'react-dom/client';
-
-        const root = ReactDOM.createRoot(document.getElementById('root'));
-        root.render(<App />);
+    <script type="text/babel" src="App.js"></script>
+    <script type="text/babel">
+      const root = ReactDOM.createRoot(document.getElementById('root'));
+      root.render(<App />);
     </script>
 </body>
 </html>
