@@ -11,6 +11,7 @@ import DisciplinePage from './DisciplinePage';
 import ActionProductivityPage from './ActionProductivityPage';
 import DailyRhythmPage from './DailyRhythmPage';
 import InspirationReadingPage from './InspirationReadingPage';
+import TreeTalkButton from './TreeTalkButton';
 
 // Main App Component
 const App = () => {
@@ -70,7 +71,7 @@ const App = () => {
       </main>
 
       <Footer />
-      
+      <TreeTalkButton />
       <Analytics />
     </div>
   );
