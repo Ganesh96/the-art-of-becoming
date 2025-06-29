@@ -9,6 +9,7 @@ const Navigation = ({ navigateTo, currentPage }) => {
     { name: 'Action & Productivity', page: 'actionProductivity' },
     { name: 'Daily Rhythm & Routine', page: 'dailyRhythm' },
     { name: 'Inspiration & Reading', page: 'inspirationReading' },
+    { name: 'Flow', page: 'flow' }, // Add the new "Flow" navigation item
   ];
 
   return (

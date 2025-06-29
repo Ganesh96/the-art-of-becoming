@@ -11,6 +11,7 @@ import DisciplinePage from './DisciplinePage';
 import ActionProductivityPage from './ActionProductivityPage';
 import DailyRhythmPage from './DailyRhythmPage';
 import InspirationReadingPage from './InspirationReadingPage';
+import FlowPage from './FlowPage'; // Import the new FlowPage component
 import TreeTalkButton from './TreeTalkButton';
 
 // Main App Component
@@ -57,6 +58,8 @@ const App = () => {
         return <DailyRhythmPage {...props} />;
       case 'inspirationReading':
         return <InspirationReadingPage {...props} />;
+      case 'flow': // Add the new case for the flow page
+        return <FlowPage {...props} />;
       default:
         return <HomePage {...props} />;
     }
